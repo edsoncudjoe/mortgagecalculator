@@ -1,3 +1,18 @@
+##############################################################################
+# Mortgage_calc_final.py
+# Purpose:  a calculator that returns the monthly payments of a 
+#     mortgage term. It can also return the total amount an individual will 
+#     pay and the total amount of interest over a given term.
+#
+# Author: E. Cudjoe
+# Date: 08/09/2014
+#
+#-----------------------------------------------------------------------------
+# Version 0.1
+#     Initial build
+##############################################################################
+
+
 # -*- coding: utf-8 -*-
 class Calc(object):
 
