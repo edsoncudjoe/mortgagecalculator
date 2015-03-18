@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ##############################################################################
 # Mortgage_calc_final.py
 # Purpose:  a calculator that returns the monthly payments of a 
@@ -13,7 +14,6 @@
 ##############################################################################
 
 
-# -*- coding: utf-8 -*-
 class Calc(object):
 
     def __init__(self, value, deposit, interest, term):
