@@ -7,9 +7,28 @@ import tkMessageBox
 class MortgageMonthPay(Frame):
 	"""Calculates monthly payments"""
 
-	def __init__(self, master):
-		Frame.__init__(self, master)
+	def __init__(self, master=None):
+		Frame.__init__(self, master, relief=FLAT, bd=10)
 		self.grid()
+		
+
+		# Menu
+		self.menubar = Menu(self)
+		menu = Menu(self.menubar, tearoff=0)
+		self.menubar.add_cascade(label="File", menu=menu)
+		menu.add_command(label="Clear", command=self.clear_text)
+		menu.add_command(label="Quit", command=self.quit)
+
+		menu = Menu(self.menubar, tearoff=0)
+		self.menubar.add_cascade(label="Help", menu=menu)
+		menu.add_command(label="About", command=self.about)
+
+		try:
+			self.master.config(menu=self.menubar)
+		except AttributeError:
+			# master is a toplevel window (Python 1.4/Tkinter 1.63)
+			self.master.tk.call(master, "config", "-menu", self.menubar)
+
 		self.create_widgets()
 
 	def get_values(self):
@@ -101,6 +120,15 @@ class MortgageMonthPay(Frame):
 
 	def clear_text(self):
 		self.result.delete(0.0, END)
+
+	def about(self):
+		tkMessageBox.showinfo("Mortgage Monthly Payment Calculator",
+			"\nMortgage Monthly Payment Calculator\n\n"
+			"\nCreated by E.Cudjoe"
+			"\nVersion 1.0"
+			"\nCopyright " + u"\u00A9" + " 2014-2015 E.cudjoe"
+			"\nhttps://github.com/edsondudjoe")
+
 
 root = Tk()
 root.title("Mortgage Monthly Payment Calculator")
