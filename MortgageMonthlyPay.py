@@ -28,7 +28,7 @@ class MortgageMonthPay(Frame):
 
 	def calc_results(self):
 		loan = self.hs_price - self.usr_dep
-		int_as_decimal = usr_int / 100
+		int_as_decimal = self.usr_int / 100
 		int_per_month = int_as_decimal / 12
 		total_months = 12 * self.usr_term
 		int_over_term = (1 + int_as_decimal / 12) ** total_months
@@ -37,7 +37,7 @@ class MortgageMonthPay(Frame):
 
 		self.result.delete(0.0, END)
 		self.result.insert(0.0, 
-			"Your monthly payments will be approximately £%6.2f " % final)
+			"Your monthly payments will be approximately £%6.2f " % self.final)
 
 	def monthly_pay(self):
 		self.get_values()
@@ -51,7 +51,7 @@ class MortgageMonthPay(Frame):
 
 		self.hs_val = StringVar()
 		self.price_ent = tk.Entry(self, textvariable=self.hs_val)
-		self.price.grid(row=0, column=1)
+		self.price_ent.grid(row=0, column=1)
 
 		# Deposit
 		self.deposit = tk.Label(self, text="Enter your deposit amount (£):")
@@ -86,14 +86,14 @@ class MortgageMonthPay(Frame):
 		#add command to calculate
 		self.calculate = tk.Button(self, text="Calculate",
 			command=self.monthly_pay)
-		self.calculate.grid(row=4, column=1)
+		self.calculate.grid(row=4, column=1, padx=5, pady=5)
 
 		# Quit Button
 		self.quit_app = tk.Button(self, text="Quit", command=self.quit)
-		self.quit_app.grid(row=8, column=0)
+		self.quit_app.grid(row=8, column=0, padx=5, pady=5)
 
 		self.clear = tk.Button(self, text="Clear", command=self.clear_text)
-		self.clear.grid(row=6, column=1)
+		self.clear.grid(row=8, column=1)
 
 		# Result
 		self.result = Text(self, x=0, y=50, width=70, height=5, wrap=WORD)
@@ -104,8 +104,10 @@ class MortgageMonthPay(Frame):
 
 root = Tk()
 root.title("Mortgage Monthly Payment Calculator")
-root.geometry('525x300+100+100')
-root.configure(background="alice blue")
+#root.geometry('525x300+100+100')
+#root.configure(background="alice blue")
+root.update()
+root.minsize(root.winfo_width(), root.winfo_height())
 app = MortgageMonthPay(root)
 app.grid()
 
